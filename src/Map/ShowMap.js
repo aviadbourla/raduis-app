@@ -106,23 +106,25 @@ const ShowMap = (props) => {
                         color={colorCircle}
                     />
                 }
+                <div  >
+                    <Search
+                        inputPlaceholder="Enter first address"
+                        onChange={handleChane}
+                        closeResultsOnClick={true}
+                        ref={serchCom}
+                        zoom={15}
+                        showMarker={false}
+                    />
+                    <Search
+                        inputPlaceholder="Enter second address"
+                        onChange={handleSecondChange}
+                        showMarker={false}
+                        closeResultsOnClick={true}
+                        zoom={15}
 
-                <Search
-                    inputPlaceholder="Enter first address"
-                    onChange={handleChane}
-                    closeResultsOnClick={true}
-                    ref={serchCom}
-                    zoom={15}
-                    showMarker={false}
-                />
-                <Search
-                    inputPlaceholder="Enter second address"
-                    onChange={handleSecondChange}
-                    showMarker={false}
-                    closeResultsOnClick={true}
-                    zoom={15}
+                    />
+                </div>
 
-                />
                 <MeasureControl {...measureOptions} />
             </Map>
 
