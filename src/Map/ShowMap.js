@@ -20,7 +20,8 @@ const measureOptions = {
     primaryAreaUnit: 'sqmeters',
     secondaryAreaUnit: 'acres',
     activeColor: '#db4a29',
-    completedColor: '#9b2d14'
+    completedColor: '#9b2d14',
+    center: [31.48649332452159, 34.94201626628637]
 };
 
 const ShowMap = (props) => {
@@ -33,10 +34,19 @@ const ShowMap = (props) => {
 
     const getCordinet = (e) => {
         setCurrentPos(e.latlng)
+        if (secondPos && currnetPos.distanceTo(secondPos) <= 500) {
+            setIsValid(true)
+        } else {
+            setIsValid(false)
+        }
     }
     const handleChane = (e) => {
         setCurrentPos(e.latLng)
-        const entries = Object.values(serchCom)
+        if (secondPos && currnetPos.distanceTo(secondPos) <= 500) {
+            setIsValid(true)
+        } else {
+            setIsValid(false)
+        }
     }
 
     const handleSecondChange = (e) => {
@@ -57,12 +67,12 @@ const ShowMap = (props) => {
 
     return (
         <div className="leaflet-container">
-            <Map center={[31.48649332452159, 34.94201626628637]} zoom={8} onclick={getCordinet} >
+            <Map center={currnetPos ? currnetPos : measureOptions.center} zoom={currnetPos ? 15 : 8} onclick={getCordinet} >
                 <TileLayer
                     url={mapSettings.tileLayerUrl}
                 />
                 {currnetPos &&
-                    <Marker position={currnetPos} >
+                    <Marker position={currnetPos} zoom={15}  >
                         <Circle
                             center={currnetPos}
                             radius={500}
@@ -82,17 +92,21 @@ const ShowMap = (props) => {
                         color={color}
                     />
                 }
+
                 <Search
                     inputPlaceholder="Enter first address"
                     onChange={handleChane}
                     closeResultsOnClick={true}
                     ref={serchCom}
+                    zoom={15}
                 />
                 <Search
                     inputPlaceholder="Enter second address"
                     onChange={handleSecondChange}
                     showMarker={secondPos}
                     closeResultsOnClick={true}
+                    zoom={15}
+
                 />
                 <MeasureControl {...measureOptions} />
             </Map>
