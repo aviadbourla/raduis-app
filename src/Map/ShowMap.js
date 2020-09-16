@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Map, Marker, Popup, TileLayer, Circle, withLeaflet } from 'react-leaflet'
 import ReactLeafletSearch from "react-leaflet-search";
 import Search from "react-leaflet-search";
@@ -29,23 +29,38 @@ const ShowMap = (props) => {
     const [currnetPos, setCurrentPos] = useState(null)
     const [secondPos, setSecondPos] = useState(null)
     const [isValid, setIsValid] = useState(false)
+    const [colorCircle, setColor] = useState(false)
+
+    useEffect(() => {
+        if (isValid) {
+            setColor('green')
+        } else {
+            setColor('red')
+        }
+    }, [isValid])
+
     const serchCom = useRef(null)
 
 
     const getCordinet = (e) => {
         setCurrentPos(e.latlng)
-        if (secondPos && currnetPos.distanceTo(secondPos) <= 500) {
+        if (secondPos && e.latlng.distanceTo(secondPos) <= 500) {
             setIsValid(true)
+            setColor('green')
         } else {
             setIsValid(false)
+            setColor('red')
         }
     }
     const handleChane = (e) => {
         setCurrentPos(e.latLng)
-        if (secondPos && currnetPos.distanceTo(secondPos) <= 500) {
+        if (secondPos && e.latLng.distanceTo(secondPos) <= 500) {
             setIsValid(true)
+            setColor('green')
+
         } else {
             setIsValid(false)
+            setColor('red')
         }
     }
 
@@ -63,7 +78,6 @@ const ShowMap = (props) => {
     }
     const MeasureControl = withLeaflet(MeasureControlDefault);
 
-    let color = isValid ? 'green' : 'red'
 
     return (
         <div className="leaflet-container">
@@ -76,7 +90,7 @@ const ShowMap = (props) => {
                         <Circle
                             center={currnetPos}
                             radius={500}
-                            color={color}
+                            color={colorCircle}
                         />
                     </Marker>
                 }
@@ -89,7 +103,7 @@ const ShowMap = (props) => {
                     && <Circle
                         center={secondPos}
                         radius={500}
-                        color={color}
+                        color={colorCircle}
                     />
                 }
 
@@ -99,11 +113,12 @@ const ShowMap = (props) => {
                     closeResultsOnClick={true}
                     ref={serchCom}
                     zoom={15}
+                    showMarker={false}
                 />
                 <Search
                     inputPlaceholder="Enter second address"
                     onChange={handleSecondChange}
-                    showMarker={secondPos}
+                    showMarker={false}
                     closeResultsOnClick={true}
                     zoom={15}
 
