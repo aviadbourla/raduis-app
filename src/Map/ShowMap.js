@@ -127,7 +127,7 @@ const ShowMap = (props) => {
                     providerOptions={{ providerKey: keys.bingKey }}
                     popUp={myPopup}
                     showMarker={secondPos && showByAdress}
-                    showPopup={secondPos && showByAdress}
+                    showPopup={false}
                     closeResultsOnClick={true}
                 />
             </Map>
