@@ -1,32 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { Map, Marker, Popup, TileLayer, Circle, withLeaflet } from 'react-leaflet'
-import ReactLeafletSearch from "react-leaflet-search";
+import { Map, Marker, Popup, TileLayer, Circle } from 'react-leaflet'
 import Search from "react-leaflet-search";
-import MeasureControl from 'react-leaflet-measure';
-import MeasureControlDefault from 'react-leaflet-measure';
-
+import keys from '../keys'
+import myPopup from './myPopup'
 import './map.css';
+import { icon } from 'leaflet';
 
-const mapSettings = {
-    center: [31.955075, 34.814135],
-    defaultBaseMap: 'OpenStreetMap',
-    zoom: 3,
-    tileLayerUrl: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-}
-const measureOptions = {
-    position: 'topleft',
-    primaryLengthUnit: 'meters',
-    secondaryLengthUnit: 'kilometers',
-    primaryAreaUnit: 'sqmeters',
-    secondaryAreaUnit: 'acres',
-    activeColor: '#db4a29',
-    completedColor: '#9b2d14',
-    center: [31.48649332452159, 34.94201626628637]
-};
 
 const ShowMap = (props) => {
 
     const [currnetPos, setCurrentPos] = useState(null)
+    const [firstPos, setFirstPos] = useState(null)
     const [secondPos, setSecondPos] = useState(null)
     const [isValid, setIsValid] = useState(false)
     const [colorCircle, setColor] = useState(false)
@@ -39,65 +23,61 @@ const ShowMap = (props) => {
         }
     }, [isValid])
 
-    const serchCom = useRef(null)
-
-
-    const getCordinet = (e) => {
+    const funDistance = (a, b) => {
+        if (b.distanceTo(a) <= 500) {
+            setIsValid(true)
+            setColor('green')
+        } else {
+            setIsValid(false)
+            setColor('red')
+        }
+    }
+    const getCoordinates = (e) => {
         setCurrentPos(e.latlng)
-        if (secondPos && e.latlng.distanceTo(secondPos) <= 500) {
-            setIsValid(true)
-            setColor('green')
-        } else {
-            setIsValid(false)
-            setColor('red')
+    }
+    const handleFirstSearch = (e) => {
+        setFirstPos(e.latLng)
+        if (secondPos !== null) {
+            funDistance(e.latlng, secondPos)
         }
     }
-    const handleChane = (e) => {
-        setCurrentPos(e.latLng)
-        if (secondPos && e.latLng.distanceTo(secondPos) <= 500) {
-            setIsValid(true)
-            setColor('green')
-
-        } else {
-            setIsValid(false)
-            setColor('red')
-        }
-    }
-
-    const handleSecondChange = (e) => {
-        if (!currnetPos) {
-            alert("you should enter first address first")
+    const handleSecondSearch = (e) => {
+        if (!firstPos) {
+            alert("Enter first address first")
         } else {
             setSecondPos(e.latLng)
-            if (currnetPos.distanceTo(e.latLng) <= 500) {
-                setIsValid(true)
-            } else {
-                setIsValid(false)
-            }
+            funDistance(e.latLng, firstPos)
         }
     }
-    const MeasureControl = withLeaflet(MeasureControlDefault);
-
 
     return (
         <div className="leaflet-container">
-            <Map center={currnetPos ? currnetPos : measureOptions.center} zoom={currnetPos ? 15 : 8} onclick={getCordinet} >
+            <Map
+                center={currnetPos ? currnetPos : keys.measureOptions.center}
+                zoom={currnetPos ? 15 : 8}
+                onclick={getCoordinates}
+            >
                 <TileLayer
-                    url={mapSettings.tileLayerUrl}
+                    url={keys.mapSettings.tileLayerUrl}
                 />
                 {currnetPos &&
-                    <Marker position={currnetPos} zoom={15}  >
+                    <Marker
+                        position={currnetPos}
+                        zoom={15}  >
                         <Circle
                             center={currnetPos}
                             radius={500}
-                            color={colorCircle}
+                            color="green"
                         />
                     </Marker>
                 }
-                {secondPos &&
-                    <Marker
-                        position={secondPos} >
-                    </Marker>
+
+                {firstPos
+                    && <Circle
+                        center={firstPos}
+                        radius={500}
+                        color={colorCircle}
+                    />
                 }
                 {(!isValid && secondPos)
                     && <Circle
@@ -106,26 +86,25 @@ const ShowMap = (props) => {
                         color={colorCircle}
                     />
                 }
-                <div  >
+                <div>
                     <Search
                         inputPlaceholder="Enter first address"
-                        onChange={handleChane}
-                        closeResultsOnClick={true}
-                        ref={serchCom}
+                        onChange={handleFirstSearch}
                         zoom={15}
-                        showMarker={false}
+                        popUp={myPopup}
+                        provider="BingMap"
+                        providerOptions={{ providerKey: keys.bingKey }}
+
                     />
                     <Search
                         inputPlaceholder="Enter second address"
-                        onChange={handleSecondChange}
-                        showMarker={false}
-                        closeResultsOnClick={true}
+                        onChange={handleSecondSearch}
                         zoom={15}
-
+                        provider="BingMap"
+                        providerOptions={{ providerKey: keys.bingKey }}
+                        popUp={myPopup}
                     />
                 </div>
-
-                <MeasureControl {...measureOptions} />
             </Map>
 
         </div >
