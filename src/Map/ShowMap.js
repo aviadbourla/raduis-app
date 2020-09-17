@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { Map, Marker, Popup, TileLayer, Circle } from 'react-leaflet'
+import { Map, Marker, Popup, TileLayer, Circle, ZoomControl } from 'react-leaflet'
 import Search from "react-leaflet-search";
 import keys from '../keys'
 import myPopup from './myPopup'
@@ -17,6 +17,8 @@ const ShowMap = (props) => {
     const [showCircle, setShowCircle] = useState(false)
     const [isValid, setIsValid] = useState(false)
     const [colorCircle, setColor] = useState(false)
+
+    const [showByAdress, setShowByAdress] = useState(true)
 
     useEffect(() => {
         if (isValid) {
@@ -37,11 +39,15 @@ const ShowMap = (props) => {
     }
     const getCoordinates = (e) => {
         setCurrentPos(e.latlng)
+        setFirstPos(null)
+        setSecondPos(null)
+        setShowByAdress(false)
     }
     const handleFirstSearch = (e) => {
-        console.log(e)
+        setCurrentPos(null)
         setFirstPos(e.latLng)
         setShowCircle(true)
+        setShowByAdress(true)
         if (secondPos !== null) {
             funDistance(e.latLng, secondPos)
         }
@@ -52,8 +58,11 @@ const ShowMap = (props) => {
         } else {
             setSecondPos(e.latLng)
             funDistance(e.latLng, firstPos)
+            setShowByAdress(true)
+
         }
     }
+
 
 
     return (
@@ -69,7 +78,7 @@ const ShowMap = (props) => {
                 {currnetPos &&
                     <Marker
                         position={currnetPos}
-                        zoom={15}  >
+                    >
                         <Circle
                             center={currnetPos}
                             radius={500}
@@ -100,11 +109,10 @@ const ShowMap = (props) => {
                         popUp={myPopup}
                         provider="BingMap"
                         providerOptions={{ providerKey: keys.bingKey }}
-                        showMarker={true}
-                        showPopup={true}
+                        showMarker={showByAdress}
+                        showPopup={showByAdress}
                         openSearchOnLoad
                         closeResultsOnClick={true}
-
                     />
                     <Search
                         inputPlaceholder="Enter second address"
@@ -113,6 +121,7 @@ const ShowMap = (props) => {
                         provider="BingMap"
                         providerOptions={{ providerKey: keys.bingKey }}
                         popUp={myPopup}
+                        showMarker={showByAdress}
                         showPopup={false}
                         closeResultsOnClick={true}
                     />
