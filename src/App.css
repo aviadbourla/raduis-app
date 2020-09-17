@@ -37,5 +37,11 @@
   }
 }
 .MuiLink-underlineHover {
-  margin-left: 20px !important;
+  margin-right: 10px !important;
+}
+.MuiToolbar-regular {
+  padding: 0 !important;
+}
+.MuiTypography-h6 {
+  margin-left: 10px !important;
 }
