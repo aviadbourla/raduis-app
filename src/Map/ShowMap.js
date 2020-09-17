@@ -109,8 +109,8 @@ const ShowMap = (props) => {
                         popUp={myPopup}
                         provider="BingMap"
                         providerOptions={{ providerKey: keys.bingKey }}
-                        showMarker={showByAdress}
-                        showPopup={showByAdress}
+                        showMarker={firstPos && showByAdress}
+                        showPopup={firstPos && showByAdress}
                         openSearchOnLoad
                         closeResultsOnClick={true}
                     />
@@ -121,8 +121,8 @@ const ShowMap = (props) => {
                         provider="BingMap"
                         providerOptions={{ providerKey: keys.bingKey }}
                         popUp={myPopup}
-                        showMarker={showByAdress}
-                        showPopup={false}
+                        showMarker={secondPos && showByAdress}
+                        showPopup={secondPos && showByAdress}
                         closeResultsOnClick={true}
                     />
                 </>
