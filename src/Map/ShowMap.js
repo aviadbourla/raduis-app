@@ -3,6 +3,7 @@ import { Map, Marker, Popup, TileLayer, Circle } from 'react-leaflet'
 import Search from "react-leaflet-search";
 import keys from '../keys'
 import myPopup from './myPopup'
+import Control from 'react-leaflet-control';
 
 import './map.css';
 import { icon } from 'leaflet';
@@ -13,6 +14,7 @@ const ShowMap = (props) => {
     const [currnetPos, setCurrentPos] = useState(null)
     const [firstPos, setFirstPos] = useState(null)
     const [secondPos, setSecondPos] = useState(null)
+    const [showCircle, setShowCircle] = useState(false)
     const [isValid, setIsValid] = useState(false)
     const [colorCircle, setColor] = useState(false)
 
@@ -25,9 +27,6 @@ const ShowMap = (props) => {
     }, [isValid])
 
     const funDistance = (a, b) => {
-        console.log(a)
-        console.log(b)
-
         if (b.distanceTo(a) <= 500) {
             setIsValid(true)
             setColor('green')
@@ -40,7 +39,9 @@ const ShowMap = (props) => {
         setCurrentPos(e.latlng)
     }
     const handleFirstSearch = (e) => {
+        console.log(e)
         setFirstPos(e.latLng)
+        setShowCircle(true)
         if (secondPos !== null) {
             funDistance(e.latLng, secondPos)
         }
@@ -53,6 +54,7 @@ const ShowMap = (props) => {
             funDistance(e.latLng, firstPos)
         }
     }
+
 
     return (
         <div className="leaflet-container">
@@ -99,8 +101,8 @@ const ShowMap = (props) => {
                         provider="BingMap"
                         providerOptions={{ providerKey: keys.bingKey }}
                         showMarker={true}
-                        closeResultsOnClick={true}
                         showPopup={true}
+                        openSearchOnLoad
 
                     />
                     <Search
@@ -111,7 +113,6 @@ const ShowMap = (props) => {
                         providerOptions={{ providerKey: keys.bingKey }}
                         popUp={myPopup}
                         showPopup={false}
-                        closeResultsOnClick={true}
 
                     />
                 </>

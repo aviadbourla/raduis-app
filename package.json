@@ -10,6 +10,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-leaflet": "^2.7.0",
+    "react-leaflet-control": "^2.1.2",
     "react-leaflet-measure": "^2.1.1",
     "react-leaflet-search": "^2.0.1",
     "react-scripts": "3.4.3"
