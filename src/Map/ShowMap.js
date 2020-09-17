@@ -103,6 +103,7 @@ const ShowMap = (props) => {
                         showMarker={true}
                         showPopup={true}
                         openSearchOnLoad
+                        closeResultsOnClick={true}
 
                     />
                     <Search
@@ -113,7 +114,7 @@ const ShowMap = (props) => {
                         providerOptions={{ providerKey: keys.bingKey }}
                         popUp={myPopup}
                         showPopup={false}
-
+                        closeResultsOnClick={true}
                     />
                 </>
             </Map>
