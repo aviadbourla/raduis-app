@@ -8,3 +8,6 @@
   --icon-width: 36px !important;
   --icon-height: 36px !important;
 }
+.leaflet-right {
+  display: flex;
+}

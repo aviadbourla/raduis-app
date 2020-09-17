@@ -3,6 +3,7 @@ import { Map, Marker, Popup, TileLayer, Circle } from 'react-leaflet'
 import Search from "react-leaflet-search";
 import keys from '../keys'
 import myPopup from './myPopup'
+
 import './map.css';
 import { icon } from 'leaflet';
 
@@ -24,6 +25,9 @@ const ShowMap = (props) => {
     }, [isValid])
 
     const funDistance = (a, b) => {
+        console.log(a)
+        console.log(b)
+
         if (b.distanceTo(a) <= 500) {
             setIsValid(true)
             setColor('green')
@@ -38,7 +42,7 @@ const ShowMap = (props) => {
     const handleFirstSearch = (e) => {
         setFirstPos(e.latLng)
         if (secondPos !== null) {
-            funDistance(e.latlng, secondPos)
+            funDistance(e.latLng, secondPos)
         }
     }
     const handleSecondSearch = (e) => {
@@ -86,7 +90,7 @@ const ShowMap = (props) => {
                         color={colorCircle}
                     />
                 }
-                <div>
+                <>
                     <Search
                         inputPlaceholder="Enter first address"
                         onChange={handleFirstSearch}
@@ -94,6 +98,9 @@ const ShowMap = (props) => {
                         popUp={myPopup}
                         provider="BingMap"
                         providerOptions={{ providerKey: keys.bingKey }}
+                        showMarker={true}
+                        closeResultsOnClick={true}
+                        showPopup={true}
 
                     />
                     <Search
@@ -103,8 +110,11 @@ const ShowMap = (props) => {
                         provider="BingMap"
                         providerOptions={{ providerKey: keys.bingKey }}
                         popUp={myPopup}
+                        showPopup={false}
+                        closeResultsOnClick={true}
+
                     />
-                </div>
+                </>
             </Map>
 
         </div >
