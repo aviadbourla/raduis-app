@@ -45,3 +45,6 @@
 .MuiTypography-h6 {
   margin-left: 10px !important;
 }
+.MuiToolbar-gutters {
+  background-color: black !important;
+}
