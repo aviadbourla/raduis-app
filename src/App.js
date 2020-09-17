@@ -1,10 +1,15 @@
 import React from 'react';
 import ShowMap from './Map/ShowMap';
 import './App.css';
+import ButtonAppBar from './Nav/ButtonAppBar'
 
 function App() {
   return (
-    <ShowMap />
+    <div>
+      <ButtonAppBar />
+      <ShowMap />
+
+    </div>
   );
 }
 
