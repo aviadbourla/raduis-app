@@ -19,6 +19,7 @@ body {
 
 .map-continer {
   height: 92vh;
+  position: absolute;
 }
 .nav-continer {
   height: 8vh;
