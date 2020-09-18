@@ -107,29 +107,33 @@ const ShowMap = (props) => {
                         color={colorCircle}
                     />
                 }
-                <Search
-                    inputPlaceholder="Enter first address"
-                    onChange={handleFirstSearch}
-                    zoom={14}
-                    popUp={myPopup}
-                    provider="BingMap"
-                    providerOptions={{ providerKey: mapKey.bingKey }}
-                    showMarker={firstPos && showByAdress}
-                    showPopup={firstPos && showByAdress}
-                    openSearchOnLoad
-                    closeResultsOnClick={true}
-                />
-                <Search
-                    inputPlaceholder="Enter second address"
-                    onChange={handleSecondSearch}
-                    zoom={14}
-                    provider="BingMap"
-                    providerOptions={{ providerKey: mapKey.bingKey }}
-                    popUp={myPopup}
-                    showMarker={secondPos && showByAdress}
-                    showPopup={false}
-                    closeResultsOnClick={true}
-                />
+                <div className="search">
+                    <Search
+                        inputPlaceholder="Enter first address"
+                        onChange={handleFirstSearch}
+                        zoom={14}
+                        popUp={myPopup}
+                        provider="BingMap"
+                        providerOptions={{ providerKey: mapKey.bingKey }}
+                        showMarker={firstPos && showByAdress}
+                        showPopup={firstPos && showByAdress}
+                        openSearchOnLoad
+                        closeResultsOnClick={true}
+                        className="search-div"
+                    />
+                    <Search
+                        inputPlaceholder="Enter second address"
+                        onChange={handleSecondSearch}
+                        zoom={14}
+                        provider="BingMap"
+                        providerOptions={{ providerKey: mapKey.bingKey }}
+                        popUp={myPopup}
+                        showMarker={secondPos && showByAdress}
+                        showPopup={false}
+                        closeResultsOnClick={true}
+                        className="search-div"
+                    />
+                </div>
             </Map>
         </div >
     )

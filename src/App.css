@@ -1,9 +1,10 @@
-html {
-  overflow-x: hidden !important;
-}
+html,
 body {
-  overflow-x: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+  overflow: auto !important;
+  height: 100% !important;
 }
+
 .MuiLink-underlineHover {
   margin-right: 10px !important;
 }
@@ -17,9 +18,19 @@ body {
   background-color: #4856568f !important;
 }
 
+.leaflet-right {
+  display: flex !important;
+}
+
 .map-continer {
   height: 92vh;
 }
 .nav-continer {
   height: 8vh;
+}
+
+@media only screen and (max-width: 600px) {
+  .leaflet-right {
+    display: block !important;
+  }
 }
