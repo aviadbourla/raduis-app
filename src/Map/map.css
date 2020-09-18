@@ -1,25 +1,10 @@
 .leaflet-container {
   width: 100%;
-  height: 96.3vh;
+  height: 100%;
 }
 /* .leaflet-top {
 } */
 .search-control-wrap {
   --icon-width: 36px !important;
   --icon-height: 36px !important;
-}
-.leaflet-right {
-  display: flex;
-}
-.leaflet-container {
-  margin-top: 36px;
-}
-
-@media only screen and (max-width: 500px) {
-  .leaflet-right {
-    display: block;
-  }
-  .leaflet-container {
-    margin-top: 28px;
-  }
 }

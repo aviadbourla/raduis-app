@@ -1,12 +1,16 @@
 import React from 'react';
 import ShowMap from './Map/ShowMap';
-import './App.css';
 import ButtonAppBar from './Nav/ButtonAppBar'
+import './App.css';
 function App() {
   return (
-    <div>
-      <ButtonAppBar />
-      <ShowMap />
+    <div >
+      <div className="nav-continer">
+        <ButtonAppBar />
+      </div>
+      <div className="map-continer">
+        <ShowMap />
+      </div>
     </div>
   );
 }

@@ -131,7 +131,6 @@ const ShowMap = (props) => {
                     closeResultsOnClick={true}
                 />
             </Map>
-
         </div >
     )
 }
