@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 export default function ButtonAppBar() {
     const classes = useStyles();
     return (
-        <AppBar position="relative">
+        <AppBar position="fixed">
             <Toolbar>
                 <Typography variant="h6" className={classes.title}>
                     Far From Home
