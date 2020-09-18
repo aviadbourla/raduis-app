@@ -1,3 +1,9 @@
+html {
+  overflow-x: hidden !important;
+}
+body {
+  overflow-x: hidden !important;
+}
 .MuiLink-underlineHover {
   margin-right: 10px !important;
 }
@@ -12,5 +18,4 @@
 }
 
 .MuiAppBar-positionSticky {
-  position: -webkit-sticky !important;
 }
