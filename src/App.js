@@ -9,11 +9,12 @@ function App() {
       <div className="nav-continer">
         <ButtonAppBar />
       </div>
-      <div style={{ height: '40px', position: 'relative' }}>
+      <div style={{ position: 'relative' }}>
+        <div className="map-continer">
+          <ShowMap />
+        </div>
       </div>
-      <div className="map-continer">
-        <ShowMap />
-      </div>
+
     </div>
   );
 }
