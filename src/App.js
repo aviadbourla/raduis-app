@@ -6,7 +6,7 @@ import ButtonAppBar from './Nav/ButtonAppBar'
 
 function App() {
   return (
-    <div style={{ height: '100vh' }}>
+    <div>
       <ButtonAppBar />
       <ShowMap />
     </div>

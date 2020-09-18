@@ -14,7 +14,3 @@
 .MuiAppBar-positionSticky {
   position: -webkit-sticky !important;
 }
-.MuiAppBar-root {
-  z-index: 0 !important;
-  height: 8vh !important;
-}
