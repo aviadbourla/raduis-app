@@ -26,20 +26,19 @@ export default function ButtonAppBar() {
     const classes = useStyles();
 
     return (
-        <div className={classes.root}>
-            <AppBar position="fixed">
-                <Toolbar>
-                    <Typography variant="h6" className={classes.title}>
-                        Far From Home
+        <AppBar position="sticky">
+            <Toolbar>
+                <Typography variant="h6" className={classes.title}>
+                    Far From Home
                     </Typography>
-                    <Link href="https://github.com/aviadbourla" color="inherit">
-                        <GitHubIcon fontSize="large" />
-                    </Link>
-                    <Link href="https://www.linkedin.com/in/aviad-bourla/" color="inherit">
-                        <LinkedInIcon fontSize="large" />
-                    </Link>
-                </Toolbar>
-            </AppBar>
-        </div>
+                <Link href="https://github.com/aviadbourla" color="inherit">
+                    <GitHubIcon fontSize="large" />
+                </Link>
+                <Link href="https://www.linkedin.com/in/aviad-bourla/" color="inherit">
+                    <LinkedInIcon fontSize="large" />
+                </Link>
+            </Toolbar>
+        </AppBar>
+
     );
 }

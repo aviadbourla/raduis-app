@@ -48,3 +48,7 @@
 .MuiToolbar-gutters {
   background-color: #4856568f !important;
 }
+
+.MuiAppBar-positionSticky {
+  position: -webkit-sticky !important;
+}
