@@ -5,7 +5,6 @@ import mapKey from '../mapKey'
 import mapSettings from './mapSettings'
 import myPopup from './myPopup'
 import Control from 'react-leaflet-control';
-import ButtonAppBar from '../Nav/ButtonAppBar'
 import './map.css';
 import { icon } from 'leaflet';
 
@@ -46,7 +45,7 @@ const ShowMap = (props) => {
         setFirstPos(null)
         setSecondPos(null)
         setShowByAdress(false)
-        myMap.current.leafletElement.setView([e.latlng.lat, e.latlng.lng], 15)
+        myMap.current.leafletElement.setView([e.latlng.lat, e.latlng.lng], 14)
     }
 
     const handleFirstSearch = (e) => {
@@ -56,7 +55,7 @@ const ShowMap = (props) => {
         if (secondPos !== null) {
             funDistance(e.latLng, secondPos)
         }
-        myMap.current.leafletElement.setView([e.latLng.lat, e.latLng.lng], 15)
+        myMap.current.leafletElement.setView([e.latLng.lat, e.latLng.lng], 14)
     }
 
     const handleSecondSearch = (e) => {
@@ -66,76 +65,73 @@ const ShowMap = (props) => {
             setSecondPos(e.latLng)
             funDistance(e.latLng, firstPos)
             setShowByAdress(true)
-            myMap.current.leafletElement.setView([e.latLng.lat, e.latLng.lng], 15)
+            myMap.current.leafletElement.setView([e.latLng.lat, e.latLng.lng], 14)
         }
     }
 
     return (
-        <div>
-            <ButtonAppBar />
-            <div className="leaflet-container" key={indexMap} >
-                <Map
-                    center={mapSettings.measureOptions.center}
-                    ref={myMap}
-                    zoom={8}
-                    onClick={getCoordinates}
-                >
-                    <TileLayer
-                        url={mapSettings.mapSettings.tileLayerUrl}
-                    />
-                    {currnetPos &&
-                        <Marker
-                            position={currnetPos}
-                        >
-                            <Circle
-                                center={currnetPos}
-                                radius={1000}
-                                color="green"
-
-                            />
-                        </Marker>
-                    }
-
-                    {firstPos
-                        && <Circle
-                            center={firstPos}
+        <div className="leaflet-container" key={indexMap} >
+            <Map
+                center={mapSettings.measureOptions.center}
+                ref={myMap}
+                zoom={8}
+                onClick={getCoordinates}
+            >
+                <TileLayer
+                    url={mapSettings.mapSettings.tileLayerUrl}
+                />
+                {currnetPos &&
+                    <Marker
+                        position={currnetPos}
+                    >
+                        <Circle
+                            center={currnetPos}
                             radius={1000}
-                            color={colorCircle}
-                        />
-                    }
-                    {(!isValid && secondPos)
-                        && <Circle
-                            center={secondPos}
-                            radius={1000}
-                            color={colorCircle}
-                        />
-                    }
-                    <Search
-                        inputPlaceholder="Enter first address"
-                        onChange={handleFirstSearch}
-                        zoom={15}
-                        popUp={myPopup}
-                        provider="BingMap"
-                        providerOptions={{ providerKey: mapKey.bingKey }}
-                        showMarker={firstPos && showByAdress}
-                        showPopup={firstPos && showByAdress}
-                        openSearchOnLoad
-                        closeResultsOnClick={true}
-                    />
-                    <Search
-                        inputPlaceholder="Enter second address"
-                        onChange={handleSecondSearch}
-                        zoom={15}
-                        provider="BingMap"
-                        providerOptions={{ providerKey: mapKey.bingKey }}
-                        popUp={myPopup}
-                        showMarker={secondPos && showByAdress}
-                        showPopup={false}
-                        closeResultsOnClick={true}
-                    />
-                </Map>
+                            color="green"
 
-            </div >
+                        />
+                    </Marker>
+                }
+
+                {firstPos
+                    && <Circle
+                        center={firstPos}
+                        radius={1000}
+                        color={colorCircle}
+                    />
+                }
+                {(!isValid && secondPos)
+                    && <Circle
+                        center={secondPos}
+                        radius={1000}
+                        color={colorCircle}
+                    />
+                }
+                <Search
+                    inputPlaceholder="Enter first address"
+                    onChange={handleFirstSearch}
+                    zoom={14}
+                    popUp={myPopup}
+                    provider="BingMap"
+                    providerOptions={{ providerKey: mapKey.bingKey }}
+                    showMarker={firstPos && showByAdress}
+                    showPopup={firstPos && showByAdress}
+                    openSearchOnLoad
+                    closeResultsOnClick={true}
+                />
+                <Search
+                    inputPlaceholder="Enter second address"
+                    onChange={handleSecondSearch}
+                    zoom={14}
+                    provider="BingMap"
+                    providerOptions={{ providerKey: mapKey.bingKey }}
+                    popUp={myPopup}
+                    showMarker={secondPos && showByAdress}
+                    showPopup={false}
+                    closeResultsOnClick={true}
+                />
+            </Map>
+
         </div >
     )
 }
