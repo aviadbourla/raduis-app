@@ -30,6 +30,7 @@ textarea {
 
 .map-continer {
   height: 92vh;
+  z-index: 2147483;
 }
 .nav-continer {
   height: 8vh;

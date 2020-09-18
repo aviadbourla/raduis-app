@@ -14,7 +14,6 @@ function App() {
           <ShowMap />
         </div>
       </div>
-
     </div>
   );
 }
