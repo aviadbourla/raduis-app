@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect, useDebugValue } from 'react'
 import { Map, Marker, Popup, TileLayer, Circle, ZoomControl } from 'react-leaflet'
 import Search from "react-leaflet-search";
-import keys from '../keys'
+import mapKey from '../mapKey'
+import mapSettings from './mapSettings'
 import myPopup from './myPopup'
 import Control from 'react-leaflet-control';
 import ButtonAppBar from '../Nav/ButtonAppBar'
@@ -30,7 +31,7 @@ const ShowMap = (props) => {
     }, [isValid])
 
     const funDistance = (a, b) => {
-        if (b.distanceTo(a) <= 500) {
+        if (b.distanceTo(a) <= 1000) {
             setIsValid(true)
             setColor('green')
         } else {
@@ -74,13 +75,13 @@ const ShowMap = (props) => {
             <ButtonAppBar />
             <div className="leaflet-container" key={indexMap} >
                 <Map
-                    center={keys.measureOptions.center}
+                    center={mapSettings.measureOptions.center}
                     ref={myMap}
                     zoom={8}
                     onClick={getCoordinates}
                 >
                     <TileLayer
-                        url={keys.mapSettings.tileLayerUrl}
+                        url={mapSettings.mapSettings.tileLayerUrl}
                     />
                     {currnetPos &&
                         <Marker
@@ -88,7 +89,7 @@ const ShowMap = (props) => {
                         >
                             <Circle
                                 center={currnetPos}
-                                radius={500}
+                                radius={1000}
                                 color="green"
 
                             />
@@ -98,14 +99,14 @@ const ShowMap = (props) => {
                     {firstPos
                         && <Circle
                             center={firstPos}
-                            radius={500}
+                            radius={1000}
                             color={colorCircle}
                         />
                     }
                     {(!isValid && secondPos)
                         && <Circle
                             center={secondPos}
-                            radius={500}
+                            radius={1000}
                             color={colorCircle}
                         />
                     }
@@ -115,7 +116,7 @@ const ShowMap = (props) => {
                         zoom={15}
                         popUp={myPopup}
                         provider="BingMap"
-                        providerOptions={{ providerKey: keys.bingKey }}
+                        providerOptions={{ providerKey: mapKey.bingKey }}
                         showMarker={firstPos && showByAdress}
                         showPopup={firstPos && showByAdress}
                         openSearchOnLoad
@@ -126,7 +127,7 @@ const ShowMap = (props) => {
                         onChange={handleSecondSearch}
                         zoom={15}
                         provider="BingMap"
-                        providerOptions={{ providerKey: keys.bingKey }}
+                        providerOptions={{ providerKey: mapKey.bingKey }}
                         popUp={myPopup}
                         showMarker={secondPos && showByAdress}
                         showPopup={false}

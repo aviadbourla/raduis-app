@@ -1,5 +1,5 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-/src/keys.js
+/src/mapKey.js
 
 # dependencies
 /node_modules
