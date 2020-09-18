@@ -16,22 +16,10 @@ body {
 .MuiToolbar-gutters {
   background-color: #4856568f !important;
 }
-.main-panel {
-  position: relative;
-  float: right;
-  width: 100%;
-  min-height: 100vh;
-  -webkit-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
-  -moz-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
-  -o-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
-  -ms-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
-  transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
-  -webkit-overflow-scrolling: touch;
-}
+
 .map-continer {
   height: 92vh;
 }
 .nav-continer {
-  height: 10vh;
-  margin-top: -1rem;
+  height: 8vh;
 }
