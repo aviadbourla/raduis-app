@@ -12,3 +12,9 @@
 .search {
   position: fixed;
 }
+
+@media only screen and (max-width: 600px) {
+  .leaflet-container {
+    margin-top: 6px;
+  }
+}

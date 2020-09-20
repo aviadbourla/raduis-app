@@ -104,7 +104,7 @@ const ShowMap = (props) => {
                 }
                 <div className="search">
                     <Search
-                        inputPlaceholder="Enter first address"
+                        inputPlaceholder="Choose main address"
                         onChange={handleFirstSearch}
                         zoom={14}
                         popUp={myPopup}
@@ -117,7 +117,7 @@ const ShowMap = (props) => {
                         className="search-div"
                     />
                     <Search
-                        inputPlaceholder="Enter second address"
+                        inputPlaceholder="Choose destination address"
                         onChange={handleSecondSearch}
                         zoom={14}
                         provider="BingMap"
@@ -127,6 +127,7 @@ const ShowMap = (props) => {
                         showPopup={false}
                         closeResultsOnClick={true}
                         className="search-div"
+
                     />
                 </div>
             </Map>
