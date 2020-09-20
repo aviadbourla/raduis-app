@@ -7,6 +7,8 @@ import myPopup from './myPopup'
 import Control from 'react-leaflet-control';
 import './map.css';
 import { icon } from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+
 
 
 const ShowMap = (props) => {
@@ -18,8 +20,8 @@ const ShowMap = (props) => {
     const [colorCircle, setColor] = useState(false)
     const [indexMap, setIndexMap] = useState(0);
     const [showByAdress, setShowByAdress] = useState(true)
-
     const myMap = useRef(null)
+
 
     useEffect(() => {
         if (isValid) {
@@ -69,6 +71,14 @@ const ShowMap = (props) => {
         }
     }
 
+    const onViewportChange = (e) => {
+        console.log(e);
+    }
+
+    const onViewportChanged = (e) => {
+        console.log(e);
+    }
+
     return (
         <div className="leaflet-container" key={indexMap} >
             <Map
@@ -76,6 +86,8 @@ const ShowMap = (props) => {
                 ref={myMap}
                 zoom={8}
                 onClick={getCoordinates}
+                onViewportChange={onViewportChange}
+                onViewportChanged={onViewportChanged}
             >
                 <TileLayer
                     url={mapSettings.mapSettings.tileLayerUrl}

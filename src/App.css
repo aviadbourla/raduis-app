@@ -29,7 +29,8 @@ textarea {
 }
 
 .map-continer {
-  height: 92%;
+  padding: 0;
+  margin: 0;
 }
 .nav-continer {
   height: 8%;
@@ -42,4 +43,6 @@ textarea {
   .leaflet-right {
     display: block !important;
   }
+}
+.MuiGrid-root {
 }

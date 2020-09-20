@@ -2,7 +2,11 @@ const mapSettings = {
     center: [31.955075, 34.814135],
     defaultBaseMap: 'OpenStreetMap',
     zoom: 3,
-    tileLayerUrl: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+    tileLayerUrl: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    maxZoom: 18,
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: 0,
 }
 
 const measureOptions = {

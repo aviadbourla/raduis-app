@@ -28,9 +28,7 @@ function App() {
           </Paper>
         </Grid>
         <Grid item xs={12}>
-          <div style={{ height: '600px', marginTop: '2rem' }}>
-            <ShowMap />
-          </div>
+          <ShowMap />
         </Grid>
       </Grid>
     </div>
