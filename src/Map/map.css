@@ -4,13 +4,11 @@
   position: fixed !important;
   margin-top: 10px;
 }
-/* .leaflet-top {
-} */
+
 .search-control-wrap {
   --icon-width: 36px !important;
   --icon-height: 36px !important;
 }
-
 .search {
   position: fixed;
 }

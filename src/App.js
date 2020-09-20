@@ -1,39 +1,21 @@
 import React from 'react';
 import ShowMap from './Map/ShowMap';
 import ButtonAppBar from './Nav/ButtonAppBar'
-import './App.css';
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    paddingTop: theme.spacing(2),
-    color: theme.palette.text.secondary,
-  },
-  mapContiner: {
-  }
-}));
-function App() {
-  const classes = useStyles();
+import './App.css';
 
+function App() {
   return (
-    <div className={classes.root}>
-      <Grid container spacing={3}>
+    <div>
+      <Grid container spacing={5}>
         <Grid item xs={12}>
-          <Paper className={classes.paper}>
-            <ButtonAppBar />
-          </Paper>
+          <ButtonAppBar />
         </Grid>
         <Grid item xs={12}>
           <ShowMap />
         </Grid>
       </Grid>
     </div>
-
-
   );
 }
 
