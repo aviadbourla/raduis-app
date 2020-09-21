@@ -16,19 +16,39 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+const handleRefresh = () => {
+    window.location.reload()
+}
+
 export default function ButtonAppBar() {
     const classes = useStyles();
     return (
         <AppBar position="fixed">
             <Toolbar>
-                <Typography variant="h6" className={classes.title}>
-                    Far From Home
-                    </Typography>
-                <Link href="https://github.com/aviadbourla" color="inherit">
-                    <GitHubIcon fontSize="large" />
+                <Typography
+                    variant="h6"
+                    className={classes.title}
+                    onClick={handleRefresh}>
+                    <Link
+                        TypographyClasses="h6"
+                        href=""
+                        color="inherit">
+                        Far From Home
+                   </Link>
+                </Typography>
+                <Link
+                    href="https://github.com/aviadbourla"
+                    color="inherit">
+                    <GitHubIcon
+                        fontSize="large"
+                    />
                 </Link>
-                <Link href="https://www.linkedin.com/in/aviad-bourla/" color="inherit">
-                    <LinkedInIcon fontSize="large" />
+                <Link
+                    href="https://www.linkedin.com/in/aviad-bourla/"
+                    color="inherit">
+                    <LinkedInIcon
+                        fontSize="large"
+                    />
                 </Link>
             </Toolbar>
         </AppBar>

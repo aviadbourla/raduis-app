@@ -66,7 +66,9 @@ const ShowMap = (props) => {
     }
 
     return (
-        <div className="leaflet-container" key={indexMap} >
+        <div
+            className="leaflet-container"
+            key={indexMap} >
             <Map
                 center={mapSettings.measureOptions.center}
                 ref={myMap}
